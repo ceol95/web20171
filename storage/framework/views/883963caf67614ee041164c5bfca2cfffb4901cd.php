@@ -149,7 +149,7 @@
             });
             $(document).ready(function(){
                 
-                $('.liMenu').each(function( index ) {
+               /* $('.liMenu').each(function( index ) {
                     $idParrent = $(this).val();
                     $html = '<div class="wrap-popup column1"> <div class="popup"><ul class="nav">';
                     

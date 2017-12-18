@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "gloudemans/shoppingcart": "^2.2",
         "paypal/rest-api-sdk-php": "*",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "greggilbert/recaptcha": "dev-master"
          
     },
     "require-dev": {

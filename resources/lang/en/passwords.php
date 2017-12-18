@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
+    'password' => 'Mật khẩu phải ít nhất 6 ký tự',//'Passwords must be at least six characters and match the confirmation.',
     'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'sent' => 'Kiểm tra hòm thử để xem link khởi tạo lại mật khẩu',//'We have e-mailed your password reset link!',
+    'token' => 'Token để khởi tạo lại mật khẩu sai',//'This password reset token is invalid.',
+    'user' => 'Không thể tìm thấy tài khoản ứng với email này',//"We can't find a user with that e-mail address.",
 
 ];

@@ -20,9 +20,7 @@ class PagesController extends Controller
     public function index()
     {
         // mobile
-        $menu = DB::table('category')
-            ->where('cat','like','%menu%')
-            ->where('parent_id','=',0)->get();
+        $menu = Category::tree();
         $brand = Brands::all();
         $mobile = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
@@ -43,7 +41,7 @@ class PagesController extends Controller
                 ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
                 ->paginate(4);
 
-    	return view('front-end.home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc,'menu'=>$menu,'brand'=>$brand]);
+    	return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc,'menu'=>$menu,'brand'=>$brand]);
     }
     public function getMenuChild($id){
         return DB::table('category')->where('parent_id','=',$id)->get();
@@ -116,6 +114,7 @@ class PagesController extends Controller
            $detail = new Oders_detail();
            $detail->pro_id = $row->id;
            $detail->qty = $row->qty;
+           $detail->price = $row->price;
            $detail->o_id = $o_id;
            $detail->created_at = new datetime;
            $detail->save();

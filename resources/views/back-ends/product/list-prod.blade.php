@@ -240,7 +240,7 @@
 				    {},
 				    {
 						//delete record form
-						url: "sanpham/del",
+						url: "sanpham/getdellist",
 						recreateForm: true,
 						mtype:'GET',
 						beforeShowForm : function(e) {

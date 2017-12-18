@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="{{ asset('public/back-end/ace-master/assets/font-awesome/4.5.0/css/font-awesome.min.css') }}" />
 
 		<!-- page specific plugin styles -->
-		@yield('css')
+		@yield('cssPlugin')
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="{{ asset('public/back-end/ace-master/assets/css/fonts.googleapis.com.css') }}" />
@@ -41,6 +41,7 @@
 				font-family: 'Roboto', sans-serif;
 			}
 		</style>
+		@yield('css')
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 

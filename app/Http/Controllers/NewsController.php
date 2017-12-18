@@ -16,15 +16,26 @@ class NewsController extends Controller
 {
     public function getlist()
     {
-    	$data = News::paginate(10);
-    	return view('back-end.news.list',['data'=>$data]);
+    	$data = News::all();
+        foreach ($data as $row) {
+            $row->cat_id = $row->category->name;
+        }
+    	return view('back-ends.news.list-new',['data'=>$data]);
+    }
+    public function getAllnews(){
+        $data = News::all();
+        foreach ($data as $row) {
+            $row->cat_id = $row->category->name;
+        }
+        return $data;
     }
     public function getadd()
     {    	
 		$cat= Category::where('parent_id',13)->get();
 
-    	return view('back-end.news.add',['cat'=>$cat]);
+    	return view('back-ends.news.add',['cat'=>$cat]);
     }
+
     public function postadd(AddNewsRequest $rq)
     {
     	$n = new News();
@@ -43,7 +54,7 @@ class NewsController extends Controller
     	$f = $rq->file('txtimg')->getClientOriginalName();
     	$filename = time().'_'.$f;
     	$n->images = $filename;    	
-    	$rq->file('txtimg')->move('uploads/news/',$filename);
+    	$rq->file('txtimg')->move('public/uploads/news/',$filename);
 
     	$n->save();
     	return redirect('admin/news')
@@ -52,7 +63,7 @@ class NewsController extends Controller
     public function getedit($id)
     {	$cat= Category::where('parent_id',13)->get();
     	$n = News::where('id',$id)->first();
-    	return view('back-end.news.edit',['data'=>$n,'cat'=>$cat]);
+    	return view('back-ends.news.edit',['data'=>$n,'cat'=>$cat]);
     }
     public function postedit(EditNewsRequest $rq,$id)
     {
@@ -69,7 +80,7 @@ class NewsController extends Controller
     	$n->user_id = Auth::guard('admin')->user()->id;
     	$n->created_at = new datetime;
 
-    	$file_path = public_path('uploads/news/').$n->images;
+    	$file_path = public_path('public/uploads/news/').$n->images;
     	 if ($rq->hasFile('txtimg')) {
             if (file_exists($file_path))
                 {
@@ -79,11 +90,36 @@ class NewsController extends Controller
             $f = $rq->file('txtimg')->getClientOriginalName();
             $filename = time().'_'.$f;
             $n->images = $filename;       
-            $rq->file('txtimg')->move('uploads/news/',$filename);
+            $rq->file('txtimg')->move('public/uploads/news/',$filename);
         }
 
     	$n->save();
     	return redirect('admin/news')
       	->with(['flash_level'=>'result_msg','flash_massage'=>' Đã sửa thành công !']);
     }
+    public function getdel($id)
+    {
+       
+        $pro = News::find($id);
+        $pro->delete();
+        return redirect('admin/news')
+         ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã xóa !']);
+    }
+
+    public function getdellist()
+   {
+     $array_id = explode(",", Input::get('id'));
+      $kq = true;
+      foreach ($array_id as $value)
+      {
+            $cat = News::find($value);
+            if ($cat->delete()) $mgs = "OK";
+            else{
+               $mgs = "Error";
+               break; 
+            } 
+
+      }
+      return ($mgs);
+   }
 }

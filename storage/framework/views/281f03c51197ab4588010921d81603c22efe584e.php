@@ -50,7 +50,7 @@
 		  <script src="<?php echo e(asset('')); ?>public/back-end/ace-master/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 		
-		<?php echo $__env->yieldContent('js'); ?>
+		<?php echo $__env->yieldContent('jsPlugin'); ?>
 		<!-- ace scripts -->
 		
 		

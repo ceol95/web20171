@@ -1,3 +1,10 @@
+<?php $__env->startSection('css'); ?>
+<style type="text/css">
+			body{
+				font-family: 'Roboto', sans-serif;
+			}
+		</style>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('pageContent'); ?>
 <div class="page-header">
 	<h1>
@@ -8,9 +15,43 @@
 		</small>
 	</h1>
 </div><!-- /.page-header -->
+<form class="form-horizontal" role="form">
+	<div class="row">
+		<div class="col-md-3">
+			<h4>Thông tin cơ bản</h4>
+			<p>Nhập tên và thông tin cơ bản của hàng hóa</p>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="input-id">Chọn danh mục</label>
+					<select name="sltCate" id="inputSltCate" required class="form-control">
+						<option value="">--Chọn Loại--</option>
+						<?php MenuMulti($cat,0,$str='---| ',0); ?>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="input-id">Chọn nhãn hiệu</label>
+					<select name="sltBrand" id="inputSltBrand" required class="form-control">
+						<option value="">--Chọn nhãn hiệu--</option>
+						<?php foreach($brand as $row): ?>
+						<option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
 
 <div class="row">
 	<div class="col-xs-12">
+
+
+
+
+
 		<div class="panel panel-default">					
 					<div class="panel-body" style="background-color: #ecf0f1; color:#27ae60;">
 					<?php echo $__env->make('back-end.modules.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

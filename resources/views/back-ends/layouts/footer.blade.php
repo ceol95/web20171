@@ -50,7 +50,7 @@
 		  <script src="{{ asset('') }}public/back-end/ace-master/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 		
-		@yield('js')
+		@yield('jsPlugin')
 		<!-- ace scripts -->
 		
 		

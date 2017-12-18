@@ -89,7 +89,7 @@ Route::group(['middleware' => 'admin'], function () {
            //Route::get('addPC',['as'        =>'getaddpro','uses' => 'ProductsController@getaddPhone']);
            Route::post('add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
 
-           Route::get('loadAll',['as'       =>'getpro','getAllpro' => 'ProductsController@getAllpro']);
+           Route::get('loadAll',['as'       =>'getAllpro','uses' => 'ProductsController@getAllpro']);
            Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlistpro']);
            
            Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
@@ -102,6 +102,7 @@ Route::group(['middleware' => 'admin'], function () {
            Route::get('/add',['as'        =>'getaddnews','uses' => 'NewsController@getadd']);
            Route::post('/add',['as'       =>'postaddnews','uses' => 'NewsController@postadd']);
 
+           Route::get('loadAll',['as'       =>'getAllnews','uses' => 'NewsController@getAllnews']);
            Route::get('/',['as'       =>'getnews','uses' => 'NewsController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdellnews','uses' => 'NewsController@getdel'])->where('id','[0-9]+');
            
@@ -120,11 +121,13 @@ Route::group(['middleware' => 'admin'], function () {
         // -------------------- quan ly thong tin khach hang--------------------
         Route::group(['prefix' => '/khachhang'], function() {;
 
-           Route::get('',['as'       =>'getmem','uses' => 'UsersController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdelmem','uses' => 'UsersController@getdel'])->where('id','[0-9]+');
+           Route::get('',['as'  =>'getmem','uses' => 'UsersController@getlist']);
+           Route::get('loadAll',['as'  =>'getAll','uses' => 'UsersController@getAll']);
+
+           Route::get('del',['as'   =>'getdelmem','uses' => 'UsersController@getdel']);
            
            Route::get('/edit/{id}',['as'  =>'geteditmem','uses' => 'UsersController@getedit'])->where('id','[0-9]+');
-           Route::post('/edit/{id}',['as' =>'posteditmem','uses' => 'UsersController@postedit'])->where('id','[0-9]+');
+           Route::post('edit',['as' =>'posteditmem','uses' => 'UsersController@postedit']);
       });
        // -------------------- quan ly thong nhan vien--------------------
         Route::group(['prefix' => '/nhanvien'], function() {;
