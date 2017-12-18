@@ -133,10 +133,11 @@ Route::group(['middleware' => 'admin'], function () {
         Route::group(['prefix' => '/nhanvien'], function() {;
 
            Route::get('',['as'       =>'getnv','uses' => 'Admin_usersController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdelnv','uses' => 'Admin_usersController@getdel'])->where('id','[0-9]+');
+           Route::get('loadAll',['as'       =>'loadAllemploy','uses' => 'Admin_usersController@loadAll']);
+           Route::get('del',['as'   =>'getdelnv','uses' => 'Admin_usersController@getdel']);
            
-           Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');
-           Route::post('/edit/{id}',['as' =>'posteditnv','uses' => 'Admin_usersController@postedit'])->where('id','[0-9]+');
+           Route::post('edit',['as'  =>'posteditnv','uses' => 'Admin_usersController@postedit']);
+           Route::post('add',['as' =>'postaddnv','uses' => 'Admin_usersController@postadd']);
       });
       // ---------------van de khac ----------------------
     });     

@@ -38,7 +38,22 @@
                 </div>
                 <div class="topbar-right">
                     <ul class="topbar-nav clearfix">
-                        <li><a href="#" class="login">Đăng nhập</a></li>
+                        @if (Auth::guest())
+                            <a class="top-a" href="{{ url('/') }}" > Home </a>  &nbsp;
+                            <li><a href="{{ url('/login') }}" class="login">Đăng nhập</a></li>
+                            
+                        @else  
+                            <li class="dropdown">
+                                <a href="#" class="account dropdown-toggle" data-toggle="dropdown">{!!Auth::user()->name!!}</a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a title="My Account" href="{{ url('/user') }}">Tài khoản</a></li>
+                                    <li><a title="My Wishlist" href="{{ url('/logout') }}">Đăng xuất</a></li>
+                                   
+                                </ul>
+                            </li>
+                           
+                        @endif 
+                        
                             <!--<li class="dropdown">
                                 <a href="#" class="account dropdown-toggle" data-toggle="dropdown">My Account</a>
                                 <ul class="dropdown-menu dropdown-menu-right">
@@ -59,7 +74,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="index.html" class="logo"><img src="{!!url('public/front-end/images/logo.png')!!}" alt=""></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{!!url('public/uploads/logo1.png')!!}" alt=""></a>
                         </div>
                         <div class="col-md-9">
                             <div class="support-client">
@@ -141,7 +156,7 @@
                         <div class="col-md-3">
                             <div class="mega-container visible-lg visible-md">
                                 <div class="navleft-container">
-                                    <div class="mega-menu-title"><h3>Category</h3></div>
+                                    <div class="mega-menu-title"><h3>Danh mục</h3></div>
                                     <div class="mega-menu-category">
                                         <ul class="nav" id="menuleft">
                                             @foreach($menu as $row)

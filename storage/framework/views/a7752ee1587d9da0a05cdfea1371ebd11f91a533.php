@@ -33,6 +33,8 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <?php echo Recaptcha::render(); ?>
+
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-envelope"></i> Gửi yếu cẩu khôi phục
                                 </button>

@@ -1,5 +1,4 @@
-@extends('back-ends.layouts.table')
-@section('pageContent')
+<?php $__env->startSection('pageContent'); ?>
 
 
 <div class="page-header">
@@ -43,11 +42,11 @@
 </div><!-- /.row -->
 
 
-@endsection
-@section('scriptModal')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scriptModal'); ?>
 <script type="text/javascript">
 	
-	var grid_data = {!!$data!!};
+	var grid_data = <?php echo $data; ?>;
 	//selRowId = myGrid.jqGrid ('getGridParam', 'selrow'),
     //celValue = myGrid.jqGrid ('getCell', selRowId, 'columnName');
 
@@ -68,8 +67,7 @@
 			
 		function phoneCheck(value, colname) {
 		var filter = /^[0-9-+]+$/;
-			if (value=="") return [false,"Cần nhập số điện thoại"];
-		    if (filter.test(value)) {
+		    if (value==""||filter.test(value)) {
 		        return [true];
 		    }
 		    else {
@@ -372,7 +370,7 @@
 
 					//update buttons classes
 					var buttons = form.next().find('.EditButton .fm-button');
-					form.find('.EditTable').after('{!! csrf_field() !!}');
+					form.find('.EditTable').after('<?php echo csrf_field(); ?>');
 					buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
 					buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
 					buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
@@ -385,7 +383,7 @@
 
 				function style_delete_form(form) {
 					var buttons = form.next().find('.DelTable .fm-button');
-					form.find('.DelTable').after('{!! csrf_field() !!}');
+					form.find('.DelTable').after('<?php echo csrf_field(); ?>');
 					form.find('#DelData').attr('name','DelData');
 					buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
 					buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
@@ -467,4 +465,6 @@
 			});
 		</script>
 
-		@endsection
+		<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('back-ends.layouts.table', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

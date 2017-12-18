@@ -38,7 +38,22 @@
                 </div>
                 <div class="topbar-right">
                     <ul class="topbar-nav clearfix">
-                        <li><a href="#" class="login">Đăng nhập</a></li>
+                        <?php if(Auth::guest()): ?>
+                            <a class="top-a" href="<?php echo e(url('/')); ?>" > Home </a>  &nbsp;
+                            <li><a href="<?php echo e(url('/login')); ?>" class="login">Đăng nhập</a></li>
+                            
+                        <?php else: ?>  
+                            <li class="dropdown">
+                                <a href="#" class="account dropdown-toggle" data-toggle="dropdown"><?php echo Auth::user()->name; ?></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a title="My Account" href="<?php echo e(url('/user')); ?>">Tài khoản</a></li>
+                                    <li><a title="My Wishlist" href="<?php echo e(url('/logout')); ?>">Đăng xuất</a></li>
+                                   
+                                </ul>
+                            </li>
+                           
+                        <?php endif; ?> 
+                        
                             <!--<li class="dropdown">
                                 <a href="#" class="account dropdown-toggle" data-toggle="dropdown">My Account</a>
                                 <ul class="dropdown-menu dropdown-menu-right">
@@ -59,7 +74,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="index.html" class="logo"><img src="<?php echo url('public/front-end/images/logo.png'); ?>" alt=""></a>
+                            <a href="<?php echo e(url('/')); ?>" class="logo"><img src="<?php echo url('public/uploads/logo1.png'); ?>" alt=""></a>
                         </div>
                         <div class="col-md-9">
                             <div class="support-client">
@@ -141,7 +156,7 @@
                         <div class="col-md-3">
                             <div class="mega-container visible-lg visible-md">
                                 <div class="navleft-container">
-                                    <div class="mega-menu-title"><h3>Category</h3></div>
+                                    <div class="mega-menu-title"><h3>Danh mục</h3></div>
                                     <div class="mega-menu-category">
                                         <ul class="nav" id="menuleft">
                                             <?php foreach($menu as $row): ?>
