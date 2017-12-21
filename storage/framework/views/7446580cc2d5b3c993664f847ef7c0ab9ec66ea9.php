@@ -93,10 +93,10 @@
                                                 <?php endif; ?>
                                             </div>
 
-                                            <a href="<?php echo url('pro/'.$row->id.'-'.$row->slug); ?>" title="<?php echo $row->name; ?>" class="product-image">
+                                            <a href="<?php echo url('san-pham/'.$row->id.'/'.$row->slug); ?>" title="<?php echo $row->name; ?>" class="product-image">
                                                 <img src="<?php echo url('public/uploads/products/'.$row->images); ?>" alt="" width="250px;" height="300px;" />
                                             </a>
-                                            <div class="box-hover" style="background-color: white;    width: 247px;">
+                                            <div class="box-hover" style="background-color: white;  height: 300px;  width: 247px; margin-top: -155px;">
                                                 <ul class="add-to-links">
                                                     <li>
                                                         <?php echo $row->r_intro; ?>
@@ -121,20 +121,20 @@
                                             </div>
                                         </div>
                                         <div class="des-container">
-                                            <h2 class="product-name"><a href="#" title=""><?php echo $row->name; ?></a></h2>
+                                            <h2 class="product-name"><a href="<?php echo url('san-pham/'.$row->id.'-'.$row->slug); ?>" title=""><?php echo $row->name; ?></a></h2>
                                             <div class="price-box">
                                                 <?php if($row->promotionPrice>0): ?>
                                                 <p class="special-price">
-                                                    <span class="price-label">Special Price</span>
+                                                    <span class="price-label">Khuyến mãi:</span>
                                                     <span class="price"><?php echo number_format($row->promotionPrice); ?></span>
                                                 </p>
                                                 <p class="old-price">
-                                                    <span class="price-label">Regular Price: </span>
+                                                    <span class="price-label">Giá: </span>
                                                     <span class="price"><?php echo number_format($row->price); ?></span>
                                                 </p>
                                                 <?php else: ?>
                                                  <p class="special-price">
-                                                    <span class="price-label">Regular Price: </span>
+                                                    <span class="price-label">Giá: </span>
                                                     <span class="price"><?php echo number_format($row->price); ?></span>
                                                 </p>
                                                 <?php endif; ?>

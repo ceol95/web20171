@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-xs-8">
-		<?php echo $__env->make('back-end.modules.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<?php echo $__env->make('back-ends.modules.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 		<form action="" method="POST" role="form">
 			<?php echo e(csrf_field()); ?>
 

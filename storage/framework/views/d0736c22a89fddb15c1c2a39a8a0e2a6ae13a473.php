@@ -70,6 +70,7 @@ width:200px;height:100px;
 							<option value="0">--Chọn loại--</option>
 							<option value="1">Hàng đề cử</option>
 							<option value="2">Hàng bán chạy</option>
+							<option value="3">Hàng mới</option>
 						</select>
 					</div>
 					<div class="form-group col-md-6">

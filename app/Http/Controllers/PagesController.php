@@ -44,25 +44,38 @@ class PagesController extends Controller
 
     	return view('front-end.home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
     }
-
+    public function getPro($id,$slug){
+        $data  = Products::where('id',$id)->first();
+        $same = Products::where('cat_id',$data->cat_id)->take(4)->get();
+        $new = Products::where('seo','3')->take(4)->get();
+        return view('front-end.detail.pro',['data'=>$data,'same'=>$same,'new'=>$new]);
+    }
     public function listCat($id){
         $cate = DB::table('category')->where('id',$id)->first();
 
         if($cate->cat == "menu" && $cate->slug == "lien-he")
             return redirect()->route('contact');
-        else if($cate->cat == "menu")
-            return redirect()->route('news');
+        else if($cate->cat == "menu"){
+            $cat = DB::table('category')->where('parent_id',$id)->get();
+            $data = DB::table('news')
+                    ->join('category', 'news.cat_id', '=', 'category.id')
+                    ->where('category.id','=',$id)
+                    ->select('news.*')
+                    ->paginate(6);
+            return view('front-end.list.list-news',['data'=>$data,'cat'=>$cat]);
+        }
         else{
             
             $cat = DB::table('category')->where('parent_id',$id)->get();
             $brand = Brands::all();
-            $data = $pc = DB::table('products')
+            $data = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
-                ->where('category.parent_id','=',$id)
+                ->where('category.id','=',$id)
                 ->select('products.*')
                 ->paginate(9);
+            return view('front-end.list.list-sort',['data'=>$data,'cat'=>$cat,'brand'=>$brand]);
         }
-        return view('front-end.list.list-sort',['data'=>$data,'cat'=>$cat,'brand'=>$brand]);
+        
     }
 
 
@@ -71,11 +84,13 @@ class PagesController extends Controller
         $cat = DB::table('category')->where('cat','like','%category%')->get();
         $brand = Brands::all();
         $data = $pc = DB::table('products')
-                ->join('category', 'products.cat_id', '=', 'category.id')
-                ->where('category.parent_id','=',$id)
+                ->join('brands', 'products.brand_id', '=', 'brands.id')
+                ->where('brands.id','=',$id)
                 ->select('products.*')
                 ->paginate(9);
+        return view('front-end.list.list-sort',['data'=>$data,'cat'=>$cat,'brand'=>$brand]);
     }
+    
     public function listSort(){
         $catId = Input::get('stlCat');
         $brandId = Input::get('stlBrand');

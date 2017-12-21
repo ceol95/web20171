@@ -151,7 +151,10 @@
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="<?php echo url('public/front-end/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo url('public/front-end/js/jquery.nivo.slider.pack.js'); ?>"></script>
+        
         <script src="<?php echo url('public/front-end/js/owl.carousel.min.js'); ?>"></script>
+        <script src="<?php echo url('public/front-end/js/jquery.bxslider.min.js'); ?>"></script>
+        <script src="<?php echo url('public/front-end/js/cloud-zoom.js'); ?>"></script>
         <script src="<?php echo url('public/front-end/js/main.js'); ?>"></script>
         <script type="text/javascript">
             /* Main Slideshow */

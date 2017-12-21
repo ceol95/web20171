@@ -24,10 +24,10 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $guard = 'admin';
-    protected $loginView = 'back-end.auth.login';
-    protected $registerView = 'back-end.auth.register';
-    protected $passwordView = 'back-end.auth.password.email';
-    protected $emailView = 'back-end.auth.login';
+    protected $loginView = 'back-ends.auth.login';
+    protected $registerView = 'back-ends.auth.register';
+    protected $passwordView = 'back-ends.auth.password.email';
+    protected $emailView = 'back-ends.auth.login';
     /**
      * Where to redirect users after login / registration.
      *

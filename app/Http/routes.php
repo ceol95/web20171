@@ -3,7 +3,7 @@
 Route::auth();
 Route::get('/user', 'HomeController@index');
 Route::get('/user/edit', 'HomeController@edit');
-
+Route::get('/user/password/reset', ['as'  => 'getreserPass', 'uses' =>'HomeController@email']);
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);
 Route::post('admin/login', ['as'  => 'postlogin', 'uses' =>'Admin\AuthController@login']);
@@ -24,16 +24,18 @@ Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']
 Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
 Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder']);
 // category
-Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
-Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
+//Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
+Route::get('/tin-tuc/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
 
 Route::get('/cat/{id}', ['as'  => 'listCat', 'uses' =>'PagesController@listCat']);
-Route::get('/san-pham/{id}', ['as'  => 'getPro', 'uses' =>'PagesController@getPro']);
-Route::get('/tin-tuc/{id}', ['as'  => 'getNews', 'uses' =>'PagesController@getNews']);
-Route::get('/brand/{id}', ['as'  => 'listBrand', 'uses' =>'PagesController@listCat']);
+Route::get('san-pham/{id}-{slug}', ['as'  => 'getPro', 'uses' =>'PagesController@getPro']);
+//Route::get('/pro/{id}-{slug}', ['as'  => 'getPro', 'uses' =>'PagesController@getPro']);
+//Route::get('/tin-tuc/{id}', ['as'  => 'getNews', 'uses' =>'PagesController@getNews']);
+Route::get('/brand/{id}', ['as'  => 'listBrand', 'uses' =>'PagesController@listBrand']);
 Route::post('sap-xep', ['as'  => 'listSort', 'uses' =>'PagesController@listSort']);
 Route::post('tim-kiem', ['as'  => 'listSearch', 'uses' =>'PagesController@listSearch']);
 Route::post('comment', ['as'  => 'comment', 'uses' =>'PagesController@postComment']);
+
 
 
 

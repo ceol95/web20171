@@ -94,10 +94,10 @@
                                                 @endif
                                             </div>
 
-                                            <a href="{!!url('pro/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->name!!}" class="product-image">
+                                            <a href="{!!url('san-pham/'.$row->id.'/'.$row->slug)!!}" title="{!!$row->name!!}" class="product-image">
                                                 <img src="{!!url('public/uploads/products/'.$row->images)!!}" alt="" width="250px;" height="300px;" />
                                             </a>
-                                            <div class="box-hover" style="background-color: white;    width: 247px;">
+                                            <div class="box-hover" style="background-color: white;  height: 300px;  width: 247px; margin-top: -155px;">
                                                 <ul class="add-to-links">
                                                     <li>
                                                         {!!$row->r_intro!!}
@@ -118,20 +118,20 @@
                                             </div>
                                         </div>
                                         <div class="des-container">
-                                            <h2 class="product-name"><a href="#" title="">{!!$row->name!!}</a></h2>
+                                            <h2 class="product-name"><a href="{!!url('san-pham/'.$row->id.'-'.$row->slug)!!}" title="">{!!$row->name!!}</a></h2>
                                             <div class="price-box">
                                                 @if($row->promotionPrice>0)
                                                 <p class="special-price">
-                                                    <span class="price-label">Special Price</span>
+                                                    <span class="price-label">Khuyến mãi:</span>
                                                     <span class="price">{!!number_format($row->promotionPrice)!!}</span>
                                                 </p>
                                                 <p class="old-price">
-                                                    <span class="price-label">Regular Price: </span>
+                                                    <span class="price-label">Giá: </span>
                                                     <span class="price">{!!number_format($row->price)!!}</span>
                                                 </p>
                                                 @else
                                                  <p class="special-price">
-                                                    <span class="price-label">Regular Price: </span>
+                                                    <span class="price-label">Giá: </span>
                                                     <span class="price">{!!number_format($row->price)!!}</span>
                                                 </p>
                                                 @endif

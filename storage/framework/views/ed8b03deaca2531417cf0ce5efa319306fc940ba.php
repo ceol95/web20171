@@ -3,10 +3,10 @@
 
 <div class="page-header">
 	<h1>
-		Dashboard
+		Khách hàng
 		<small>
 			<i class="ace-icon fa fa-angle-double-right"></i>
-			overview &amp; stats
+			Tổng quan
 		</small>
 	</h1>
 </div><!-- /.page-header -->

@@ -165,7 +165,7 @@
 						{name:'name',index:'name', width:150,editable: true,editrules:{ required:true}},
 						{name:'email',index:'email', width:100,editable: true,editrules:{ required:true},editrules:{custom: true, custom_func:emailCheck}},
 						{name:'phone',index:'phone', width:80,editable: true,editrules:{ required:true},editrules:{custom: true, custom_func:phoneCheck}},
-						{name:'level',index:'level', width:150,editable: true,edittype:"select",editoptions:{value:"100:Super Admin;99:Admin,1:Shipper,2:Nhân viên"},
+						{name:'level',index:'level', width:150,editable: true,edittype:"select",editoptions:{value:"100:Super Admin;99:Admin;1:Shipper;2:Nhân viên"},
 							formatter: function (cellValue, options, rowObject) {
 							    if(cellValue=='1') return "Shipper"; 
 							    else if(cellValue=='2') return "Nhân viên";

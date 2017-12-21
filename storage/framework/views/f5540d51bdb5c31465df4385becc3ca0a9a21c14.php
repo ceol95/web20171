@@ -14,6 +14,8 @@
     <link href="<?php echo url('public/front-end/css/nivo-slider.css'); ?>" rel="stylesheet">
     <link href="<?php echo url('public/front-end/css/animate.css'); ?>" rel="stylesheet">
     <link href="<?php echo url('public/front-end/css/owl.carousel.css'); ?>" rel="stylesheet">
+    <link href="<?php echo url('public/front-end/css/jquery.bxslider.css'); ?>" rel="stylesheet">
+    <link href="<?php echo url('public/front-end/css/cloud-zoom.css'); ?>" rel="stylesheet">
     <link href="<?php echo url('public/front-end/css/style.css'); ?>" rel="stylesheet">
     <link href="<?php echo url('public/front-end/css/responsive.css'); ?>" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
@@ -167,7 +169,7 @@
                                             ?>
                                             <?php foreach($menu as $row): ?>
                                             <?php if(sizeof($row['children'])==0): ?>
-                                            <li class="nosub liMenu" id='liMenu<?php echo $row->id; ?>' value="<?php echo $row->id; ?>"><a href="<?php echo url('/cat/'.$row->slug); ?>" class="liMenuLink"><?php echo $row->name; ?></a></li>
+                                            <li class="nosub liMenu" id='liMenu<?php echo $row->id; ?>' value="<?php echo $row->id; ?>"><a href="<?php echo url('/cat/'.$row->id); ?>" class="liMenuLink"><?php echo $row->name; ?></a></li>
                                             <?php else: ?>
                                             <li>
                                                 <a href="<?php echo url('/cat/'.$row->id); ?>"><?php echo $row->name; ?></a>
@@ -214,7 +216,7 @@
                         <ul class="nav navbar-nav">
                             <?php foreach($menu as $row): ?>
                             <?php if(sizeof($row['children'])==0): ?>
-                            <li class="nosub liMenu" id='liMenu<?php echo $row->id; ?>' value="<?php echo $row->id; ?>"><a href="<?php echo url('/cat/'.$row->slug); ?>" class="liMenuLink"><?php echo $row->name; ?></a></li>
+                            <li class="nosub liMenu" id='liMenu<?php echo $row->id; ?>' value="<?php echo $row->id; ?>"><a href="<?php echo url('/cat/'.$row->id); ?>" class="liMenuLink"><?php echo $row->name; ?></a></li>
                             <?php else: ?>
                             <li class="dropdown">
                                 <a href="<?php echo url('/cat/'.$row->id); ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $row->name; ?> <span class="fa fa-angle-down"></span></a>

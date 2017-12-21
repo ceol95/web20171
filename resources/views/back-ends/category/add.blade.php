@@ -13,7 +13,7 @@
 
 <div class="row">
 	<div class="col-xs-8">
-		@include('back-end.modules.alert')
+		@include('back-ends.modules.alert')
 		<form action="" method="POST" role="form">
 			{{ csrf_field() }}
 			<div class="row">
