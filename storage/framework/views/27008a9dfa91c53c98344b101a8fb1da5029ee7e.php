@@ -35,6 +35,9 @@
         $(".close").on("click", function (e) { $('.alert-modal').hide(); });
         
     });
+    function closeModal(){
+            $('.alert').hide();
+        }
 
 </script>
 <?php $__env->stopSection(); ?>

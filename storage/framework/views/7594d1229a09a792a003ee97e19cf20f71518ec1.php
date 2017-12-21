@@ -48,7 +48,7 @@
 			<b class="arrow"></b>
 		</li>
 		<li class="">
-			<a href="<?php echo url('admin/nhaphang'); ?>">
+			<a href="<?php echo url('admin/muahang'); ?>">
 				<i class="menu-icon fa fa-truck"></i>
 				<span class="menu-text">Nhập hàng </span>
 			</a>

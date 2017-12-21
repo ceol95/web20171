@@ -19,7 +19,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-12">
-		<?php echo $__env->make('back-end.modules.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<?php echo $__env->make('back-ends.modules.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table table-hover table-list">

@@ -27,6 +27,16 @@ Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder
 Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
 
+Route::get('/cat/{id}', ['as'  => 'listCat', 'uses' =>'PagesController@listCat']);
+Route::get('/san-pham/{id}', ['as'  => 'getPro', 'uses' =>'PagesController@getPro']);
+Route::get('/tin-tuc/{id}', ['as'  => 'getNews', 'uses' =>'PagesController@getNews']);
+Route::get('/brand/{id}', ['as'  => 'listBrand', 'uses' =>'PagesController@listCat']);
+Route::post('sap-xep', ['as'  => 'listSort', 'uses' =>'PagesController@listSort']);
+Route::post('tim-kiem', ['as'  => 'listSearch', 'uses' =>'PagesController@listSearch']);
+Route::post('comment', ['as'  => 'comment', 'uses' =>'PagesController@postComment']);
+
+
+
 Route::resource('payment', 'PayMentController');
 
 
@@ -93,9 +103,12 @@ Route::group(['middleware' => 'admin'], function () {
            Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlistpro']);
            
            Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
+           Route::post('/edit/{id}',['as'  =>'geteditpro1','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
+           Route::get('/edit/{id}',['as'  =>'geteditpro1','uses' => 'ProductsController@getFormEdit'])->where('id','[0-9]+');
+           //Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
+           //Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
+           Route::get('getdellist',['as'   =>'getdellpro','uses' => 'ProductsController@getdellist']);
            
-           Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
-           Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
       });
        // -------------------- quan ly tin tức-----------------------------
         Route::group(['prefix' => '/news'], function() {
@@ -113,6 +126,23 @@ Route::group(['middleware' => 'admin'], function () {
         Route::group(['prefix' => '/donhang'], function() {;
 
            Route::get('',['as'       =>'getpro','uses' => 'OdersController@getlist']);
+           Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OdersController@getdel'])->where('id','[0-9]+');
+           
+           Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OdersController@getdetail'])->where('id','[0-9]+');
+           Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'OdersController@postdetail'])->where('id','[0-9]+');
+      });
+         // -------------------- quan ly đơn mua hang--------------------
+        Route::group(['prefix' => '/muahang'], function() {;
+
+           Route::get('',['as'       =>'getbill','uses' => 'BillController@getlist']);
+           Route::get('loadAll',['as'       =>'getAllBill','uses' => 'BillController@getAll']);
+
+           Route::get('add',['as'       =>'getAddBill','uses' => 'BillController@getadd']);
+           Route::post('add',['as'       =>'postAddBill','uses' => 'BillController@postadd']);
+
+           Route::get('/edit/{id}',['as' =>'getEditBill','uses' => 'BillController@getedit'])->where('id','[0-9]+');
+           Route::post('/edit/{id}',['as' =>'postEditBill','uses' => 'BillController@postedit'])->where('id','[0-9]+');
+
            Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OdersController@getdel'])->where('id','[0-9]+');
            
            Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OdersController@getdetail'])->where('id','[0-9]+');

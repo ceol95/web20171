@@ -8,20 +8,21 @@ use App\Http\Requests;
 use Auth;
 use App\Products;
 use App\Category;
+use App\Brands;
 use App\Pro_detail;
 use App\News;
 use App\Oders;
 use App\Oders_detail;
-use App\Brands;
+
 use DB,Cart,Datetime;
+use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller
 {
     public function index()
     {
         // mobile
-        $menu = Category::tree();
-        $brand = Brands::all();
+        
         $mobile = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
                 ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
@@ -41,15 +42,69 @@ class PagesController extends Controller
                 ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
                 ->paginate(4);
 
-    	return view('front-end.home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc,'menu'=>$menu,'brand'=>$brand]);
+    	return view('front-end.home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
     }
+
+    public function listCat($id){
+        $cate = DB::table('category')->where('id',$id)->first();
+
+        if($cate->cat == "menu" && $cate->slug == "lien-he")
+            return redirect()->route('contact');
+        else if($cate->cat == "menu")
+            return redirect()->route('news');
+        else{
+            
+            $cat = DB::table('category')->where('parent_id',$id)->get();
+            $brand = Brands::all();
+            $data = $pc = DB::table('products')
+                ->join('category', 'products.cat_id', '=', 'category.id')
+                ->where('category.parent_id','=',$id)
+                ->select('products.*')
+                ->paginate(9);
+        }
+        return view('front-end.list.list-sort',['data'=>$data,'cat'=>$cat,'brand'=>$brand]);
+    }
+
+
+
+    public function listBrand($id){
+        $cat = DB::table('category')->where('cat','like','%category%')->get();
+        $brand = Brands::all();
+        $data = $pc = DB::table('products')
+                ->join('category', 'products.cat_id', '=', 'category.id')
+                ->where('category.parent_id','=',$id)
+                ->select('products.*')
+                ->paginate(9);
+    }
+    public function listSort(){
+        $catId = Input::get('stlCat');
+        $brandId = Input::get('stlBrand');
+        $first = Input::get('first_price');
+        $last = Input::get('last_price');
+        $sort = Input::get('stlRate');
+        if($catId!=0){
+
+        }
+        
+    }
+    public function listSearch(){
+        
+    }
+
+
+
+
     public function getMenuChild($id){
         return DB::table('category')->where('parent_id','=',$id)->get();
     }
     public function addcart($id)
     {
         $pro = Products::where('id',$id)->first();
-        Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price,'options' => ['img' => $pro->images]]);
+        $price = $pro->price;
+        if($pro->promotionPrice >0){
+            $price = $pro->promotionPrice;
+        }
+        Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $price,'options' => ['img' => $pro->images]]);
         return redirect()->route('getcart');
     }
 
@@ -79,7 +134,8 @@ class PagesController extends Controller
     }
     public function getcart()
     {   
-    	return view ('detail.card')
+
+    	return view ('front-end.detail.card')
         ->with('slug','Chi tiết đơn hàng');
     }
     public function getoder()
@@ -94,6 +150,7 @@ class PagesController extends Controller
     }
     public function postoder(Request $rq)
     {
+
         $oder = new Oders();
         $total =0;
         foreach (Cart::content() as $row) {

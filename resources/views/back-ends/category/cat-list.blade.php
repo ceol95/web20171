@@ -20,7 +20,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-12">
-		@include('back-end.modules.alert')
+		@include('back-ends.modules.alert')
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table table-hover table-list">

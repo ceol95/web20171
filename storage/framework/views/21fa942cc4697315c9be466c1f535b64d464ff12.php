@@ -67,7 +67,8 @@
 			
 		function phoneCheck(value, colname) {
 		var filter = /^[0-9-+]+$/;
-		    if (value==""||filter.test(value)) {
+			if (value=="") return [false,"Cần nhập số điện thoại"];
+		    if (filter.test(value)) {
 		        return [true];
 		    }
 		    else {

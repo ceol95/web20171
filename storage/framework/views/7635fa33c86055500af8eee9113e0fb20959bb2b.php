@@ -5,7 +5,7 @@
 		Danh mục
 		<small>
 			<i class="ace-icon fa fa-angle-double-right"></i>
-			Sửa
+			Thêm mới
 		</small>
 	</h1>
 </div><!-- /.page-header -->

@@ -13,8 +13,16 @@ class OdersController extends Controller
 {
     public function getlist()
     {
-    	$data = Oders::paginate(10);
-    	return view('back-end.oders.list',['data'=>$data]);
+    	$data = Oders::all();
+        foreach ($data as $row) {
+            $row->type = $row->user->name;
+            $row->location = $row->user->address;
+            $row->phone =$row->user->phone;
+            $row->note =$row->user->email;
+            
+        }
+
+    	return view('back-ends.order.list',['data'=>$data]);
     }
 
     public function getdetail($id)
@@ -25,7 +33,7 @@ class OdersController extends Controller
     			 	->groupBy('oders_detail.id')
     			 	->where('o_id',$id)
     			 	->get();
-    	return view('back-end.oders.detail',['data'=>$data,'oder'=>$oder]);
+    	return view('back-ends.order.detail',['data'=>$data,'oder'=>$oder]);
     }
     public function postdetail($id)
     {

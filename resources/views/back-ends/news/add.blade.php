@@ -100,15 +100,7 @@ label{
 					<div class="form-group">
 						<label for="input-id">Tóm tắt </label>
 						<textarea name="txtIntro" id="inputTxttxtIntro" class="form-control" rows="2" required="required">{{ old('txtIntro') }}</textarea>
-						<script type="text/javascript">
-							var editor = CKEDITOR.replace('txtIntro',{
-								language:'vi',
-								filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
-								filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
-								filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-								filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-							});
-						</script>
+						
 					</div>
 					<div class="form-group">
 						<label for="input-id">Bài viết chi tiết</label>
@@ -123,6 +115,7 @@ label{
 							});
 						</script>
 					</div>
+					
 				</div>
 			</div>
 		</div>

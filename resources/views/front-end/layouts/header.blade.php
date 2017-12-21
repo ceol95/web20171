@@ -159,18 +159,24 @@
                                     <div class="mega-menu-title"><h3>Danh mục</h3></div>
                                     <div class="mega-menu-category">
                                         <ul class="nav" id="menuleft">
+                                            <?php 
+                                                use App\Category;
+                                                use App\Brands;
+                                                $menu = Category::tree();
+                                                $brand = Brands::all();
+                                            ?>
                                             @foreach($menu as $row)
                                             @if(sizeof($row['children'])==0)
-                                            <li class="nosub liMenu" id='liMenu{!!$row->id!!}' value="{!!$row->id!!}"><a href="{!!url($row->slug)!!}" class="liMenuLink">{!!$row->name!!}</a></li>
+                                            <li class="nosub liMenu" id='liMenu{!!$row->id!!}' value="{!!$row->id!!}"><a href="{!!url('/cat/'.$row->slug)!!}" class="liMenuLink">{!!$row->name!!}</a></li>
                                             @else
                                             <li>
-                                                <a href="{!!url($row->slug)!!}">{!!$row->name!!}</a>
+                                                <a href="{!!url('/cat/'.$row->id)!!}">{!!$row->name!!}</a>
                                                 <div class="wrap-popup column1">
                                                     <div class="popup">
                                                         
                                                         <ul class="nav">
                                                            @foreach($row['children'] as $child)
-                                                           <li><a href="{!!url($child->slug)!!}">{!!$child->name!!}</a></li>
+                                                           <li><a href="{!!url('/cat/'.$child->id)!!}">{!!$child->name!!}</a></li>
                                                            @endforeach
                                                        </ul>
                                                    </div>
@@ -206,43 +212,21 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            @foreach($menu as $row)
+                            @if(sizeof($row['children'])==0)
+                            <li class="nosub liMenu" id='liMenu{!!$row->id!!}' value="{!!$row->id!!}"><a href="{!!url('/cat/'.$row->slug)!!}" class="liMenuLink">{!!$row->name!!}</a></li>
+                            @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer <span class="fa fa-angle-down"></span></a>
+                                <a href="{!!url('/cat/'.$row->id)!!}" class="dropdown-toggle" data-toggle="dropdown">{!!$row->name!!} <span class="fa fa-angle-down"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Desktop PC</a></li>
-                                    <li><a href="#">Notebook</a></li>
-                                    <li><a href="#">Gaming</a></li>
-                                    <li><a href="#">Mouse &amp; Keyboard</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Camera <span class="fa fa-angle-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Walkera</a></li>
-                                    <li><a href="#">Fpv System &amp; Parts</a></li>
-                                    <li><a href="#">RC Cars &amp; Parts</a></li>
-                                    <li><a href="#">Helicopters &amp; Part</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Smart Phone <span class="fa fa-angle-down"></span></a>                                   <ul class="dropdown-menu">
-                                    <li><a href="#">Accessories for iPhone</a></li>
-                                    <li><a href="#">Accessories for iPad</a></li>
-                                    <li><a href="#">Accessories for Tablet PC</a></li>
-                                    <li><a href="#">Tablet PC</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Electtronic <span class="fa fa-angle-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Batteries &amp; Chargers</a></li>
-                                    <li><a href="#">Headphone, Headset</a></li>
-                                    <li><a href="#">Home Audio</a></li>
-                                    <li><a href="#">Mp3 Player Accessories</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">New Arrivals</a></li>
+                                   @foreach($row['children'] as $child)
+                                   <li><a href="{!!url('/cat/'.$child->id)!!}">{!!$child->name!!}</a></li>
+                                   @endforeach
+                               </ul>
+                           </li>
+                           
+                           @endif
+                           @endforeach
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container -->

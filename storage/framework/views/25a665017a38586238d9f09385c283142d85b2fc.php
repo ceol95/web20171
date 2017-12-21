@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="<?php echo url('public/back-end/ace-master/assets/css/daterangepicker.min.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo url('public/back-end/ace-master/assets/css/bootstrap-datetimepicker.min.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo url('public/back-end/ace-master/assets/css/bootstrap-colorpicker.min.css'); ?>" />
+		<link rel="stylesheet" href="<?php echo url('public/back-end/ace-master/assets/css/chosen.min.css'); ?>"/>
 		<script src="<?php echo url('public/plugin/ckeditor/ckeditor.js'); ?>"></script>
 
 <?php $__env->stopSection(); ?>
@@ -28,6 +29,11 @@
 		<script src="<?php echo url('public/back-end/ace-master/assets/js/jquery.inputlimiter.min.js'); ?>"></script>
 		<script src="<?php echo url('public/back-end/ace-master/assets/js/jquery.maskedinput.min.js'); ?>"></script>
 		<script src="<?php echo url('public/back-end/ace-master/assets/js/bootstrap-tag.min.js'); ?>"></script>
+		<script src="<?php echo url('public/back-end/ace-master/assets/js/bootstrap-markdown.min.js'); ?>"></script>
+		<script src="<?php echo url('public/back-end/ace-master/assets/js/jquery.hotkeys.index.min.js'); ?>"></script>
+		<script src="<?php echo url('public/back-end/ace-master/assets/js/bootstrap-wysiwyg.min.js'); ?>"></script>
+		<script src="<?php echo url('public/back-end/ace-master/assets/js/chosen.jquery.min.js'); ?>"></script>
+
 		
 <?php $__env->stopSection(); ?>
 

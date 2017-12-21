@@ -29,4 +29,8 @@ class Products extends Model
     {
         return $this->hasOne('App\Oders_detail','pro_id');
     }
+    public function buy_detail()
+    {
+        return $this->hasOne('App\Detail_buy','idPro');
+    }
 }

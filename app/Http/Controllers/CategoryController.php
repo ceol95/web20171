@@ -26,16 +26,19 @@ class CategoryController extends Controller
    {
 		$cat = new Category();
       $parent = Category::find($rq->sltCate);
-      $cat->cat = $parent->cat; 
+      if($rq->sltCate == '0'){
+         if (Input::get('txtCat'))
+            $cat->cat .= Input::get('txtCat');
+         if (Input::get('txtMenu')&&$cat->cat!=null)
+            $cat->cat .= ' ,'.Input::get('txtMenu');
+         else 
+            $cat->cat .= Input::get('txtMenu');
+      }
+      else $cat->cat = $parent->cat; 
       $cat->parent_id= $rq->sltCate;
       $cat->name= $rq->txtCateName;
       $cat->slug = str_slug($rq->txtCateName,'-');
-      if (Input::get('txtCat'))
-         $cat->cat .= Input::get('txtCat');
-      if (Input::get('txtMenu')&&$cat->cat!=null)
-         $cat->cat .= ' ,'.Input::get('txtMenu');
-      else 
-         $cat->cat .= Input::get('txtMenu');
+      
       $cat->created_at = new DateTime;
       return Controller::addToTable($cat,'getcat');
      
@@ -48,18 +51,23 @@ class CategoryController extends Controller
    public function postedit($id,AddCategoryRequest $request)
    {
       $cat = category::find($id);
-      $parent = Category::find($rq->sltCate);
-      $cat->cat = $parent->cat;
+      $parent =  category::find($request->sltCate);
+      $cat->cat ="";
+      if($request->sltCate == '0'){
+         if (Input::get('txtCat'))
+            $cat->cat .= Input::get('txtCat');
+         if (Input::get('txtMenu')&&$cat->cat!=null)
+            $cat->cat .= ' ,'.Input::get('txtMenu');
+         else 
+            $cat->cat .= Input::get('txtMenu');
+      }
+      else $cat->cat = $parent->cat;
       $cat->name = $request->txtCateName;
       $cat->slug = str_slug($request->txtCateName,'-');
       $cat->parent_id = $request->sltCate;
       $cat->updated_at = new DateTime;
-      if (Input::get('txtCat'))
-         $cat->cat .= Input::get('txtCat');
-      if (Input::get('txtMenu')&&$cat->cat!=null)
-         $cat->cat .= ' ,'.Input::get('txtMenu');
-      else 
-         $cat->cat .= Input::get('txtMenu');
+      
+     
       $cat->save();
       return Controller::updateToTable($cat,'getcat');
 

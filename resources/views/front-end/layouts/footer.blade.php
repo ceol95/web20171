@@ -1,3 +1,44 @@
+<div class="brands">
+            <div class="container">
+                <div class="title-group1">
+                    <h2>Các nhãn hiệu nổi tiếng</h2>
+                </div>
+                <div id="brands" class="owl-container">
+                    <div class="owl">
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand5.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand4.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand3.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand2.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand1.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div class="item-innner">
+                                <a href="#" title=""><img src="{!!url('public/front-end/images/brand/logo_brand3.png')!!}" alt="" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /#brands -->
+            </div>
+        </div><!-- /.brands -->
 <div class="footer">
             <div class="footer-top">
                 <div class="container">
@@ -5,8 +46,8 @@
                         <div class="col-md-4 col-sm-4 hidden-sm hidden-xs">
                             <div class="subscribe">
                                 <div class="subscribe-inner">
-                                    <h3>Sign up for newsletter</h3>
-                                    Duis autem vel eum iriureDuis autem vel eum
+                                    <h3>Đăng ký nhận tin mới</h3>
+                                    Theo dõi để nhận các tin khuyến mãi mới
                                 </div>
                             </div>
                         </div>
@@ -15,7 +56,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="newsletter" name="email">
                                 </div>
-                                <button class="btn btn-danger" title="Subscribe" type="submit">Subscribe</button>
+                                <button class="btn btn-danger" title="Subscribe" type="submit">Đăng ký</button>
                             </form>
                         </div>
                         <div class="col-md-3 col-sm-4">
@@ -35,60 +76,58 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="footer-title">
-                                <h2>contact us</h2>
+                                <h2>Liên hệ</h2>
                             </div>
                             <div class="footer-content">
                                 <div class="email add">
-                                    <p>Support@plazathemes.com</p>
+                                    <p>ElecShop@gmail.com</p>
                                 </div>
                                 <div class="phone add">
                                     <p>(800) 0123 456 789</p>
                                 </div>
-                                <div class="address add">Address: 
-                                    <p>1234 - Bandit Tringi lAliquam Vitae. New York</p>
+                                <div class="address add">Địa chỉ: 
+                                    <p>1234 - Bách Khoa, Hà Nội</p>
                                 </div>
-                                <div class="contact-link"><a href="#" class="btn btn-default">Open in Google Maps</a></div>
+                                <div class="contact-link"><a href="#" class="btn btn-default">Xem trên bản đồ</a></div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="footer-title">
-                                <h2>MY ACCOUNT</h2>
+                                <h2>Nhãn hàng</h2>
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li><a href="#">Sitemap</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Your Account</a></li>
-                                    <li><a href="#">Advanced Search</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Sam Sung</a></li>
+                                    <li><a href="#">Nokia</a></li>
+                                    <li><a href="#">Oppo</a></li>
+                                    <li><a href="#">HTC</a></li>
+                                    <li><a href="#">Apple</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="footer-title">
-                                <h2>Payment &amp; Shipping</h2>
+                                <h2>Chi trả &amp; Shipping</h2>
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li><a href="#">Terms of Use</a></li>
-                                    <li><a href="#">Payment Methods</a></li>
-                                    <li><a href="#">Shipping Guide</a></li>
-                                    <li><a href="#">Locations We Ship To</a></li>
-                                    <li><a href="#">Estimated Delivery Time</a></li>
+                                    <li><a href="#">Cách thức dùng</a></li>
+                                    <li><a href="#">Phương thức</a></li>
+                                    <li><a href="#">Hướng dẫn Shipping</a></li>
+                                    <li><a href="#">Các địa chỉ Ship</a></li>
+                                    <li><a href="#">Giá ship</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="footer-title">
-                                <h2>Customer Service</h2>
+                                <h2>Dịch vụ khách hàng</h2>
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li><a href="#">Shipping Policy</a></li>
-                                    <li><a href="#">Compensation First</a></li>
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">Return Policy</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Chính sách shipping</a></li>
+                                    <li><a href="#">Chính sách đổi trả</a></li>
+                                    <li><a href="#">Liên hệ chúng tôi</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -329,8 +368,7 @@
             var iid3 = "countbox_3";
             CountBack_slider(gsecs3,"countbox_3", 3);
         </script>
-        <script type="text/javascript">
-            
-        </script>
+        @yield('js')
+        <script lang="javascript">(function() {var pname = ( (document.title !='')? document.title : ((document.querySelector('h1') != null)? document.querySelector('h1').innerHTML : '') );var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async=1; ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=8666d04b20e7b7338ebf3f262f23aac2&data=eyJzc29faWQiOjUyMzY5ODcsImhhc2giOiI1YTVkMDBiOTU0MmQxNTJmOGFhMTA0NDAzMTFhNDZjYiJ9&pname='+pname;var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>    
   </body>
 </html>

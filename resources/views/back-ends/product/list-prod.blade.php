@@ -4,10 +4,10 @@
 
 <div class="page-header">
 	<h1>
-		Dashboard
+		Sản phẩm
 		<small>
 			<i class="ace-icon fa fa-angle-double-right"></i>
-			overview &amp; stats
+			Tổng quan
 		</small>
 	</h1>
 </div><!-- /.page-header -->
@@ -87,6 +87,7 @@
     	
     	
     	function showModal(text){
+    		alert(text);
     		if(text=="OK") $('.alert-success').show(); 
     		else $('.alert-danger').show();
     	}
@@ -111,7 +112,7 @@
 				
 				function loadData(){
 					$.ajax({
-						url: 'sanpham/loadAll',
+						url: 'loadAll',
 						type: 'GET',
 						success: function (response) {
 							$(grid_selector).jqGrid('setGridParam', { 
@@ -154,7 +155,7 @@
 						},
 						{name:'',index:'', width:60, sorttype:"int", editable: true,
 							formatter: function (cellValue, options, rowObject) {
-							    return "<a href='sanpham/edit/"+rowObject.id+"' ><i class='fa fa-pencil' aria-hidden='true'></i></a>"
+							    return "<a href='edit/"+rowObject.id+"' ><i class='fa fa-pencil' aria-hidden='true'></i></a>"
 							    +"<a href='#'  data-toggle='modal' data-target='#myModal' onclick='openModal("+rowObject.id+")' title='Xóa' style = 'padding-left:10px'><i class='fa fa-trash' aria-hidden='true'></i></span> </a>";
 							}},
 						{name:'id',index:'id', width:60, sorttype:"int"},
@@ -240,7 +241,7 @@
 				    {},
 				    {
 						//delete record form
-						url: "sanpham/getdellist",
+						url: "getdellist",
 						recreateForm: true,
 						mtype:'GET',
 						beforeShowForm : function(e) {

@@ -12,7 +12,8 @@ use App\Brands;
 use App\Pro_details;
 use App\Detail_img;
 use Auth;
-use DateTime,File,Input,DB;
+use DateTime,File,DB;
+use Illuminate\Support\Facades\Input;
 
 
 class ProductsController extends Controller
@@ -52,9 +53,10 @@ class ProductsController extends Controller
         $data = Products::all();
         return( (json_encode($data)));
     }
-    public function getadd($id)
+    public function getadd()
     {
-        $loai = Category::where('id',$id)->first();
+        //50 pc 36 phone
+        $loai = Category::where('id','9')->first();
         $p_id = $loai->parent_id;
         $p_name = Category::where('id',$p_id)->first();
 		$cat= Category::where('parent_id',$p_id)->get();
@@ -75,6 +77,7 @@ class ProductsController extends Controller
     {
     	$pro = new Products();
 
+
     	$pro->name = $rq->txtname;
     	$pro->slug = str_slug($rq->txtname,'-');
     	$pro->intro = $rq->txtintro;
@@ -86,17 +89,40 @@ class ProductsController extends Controller
     	$pro->review = $rq->txtReview;
     	$pro->tag = $rq->txttag;
     	$pro->price = $rq->txtprice;
+        
     	$pro->cat_id = $rq->sltCate;
-        $pro->brand_id = $rq->sltBrand;
+        
     	$pro->user_id = Auth::guard('admin')->user()->id;
     	$pro->created_at = new datetime;
-    	$pro->status = '1';
+    	//$pro->status = '1';
     	$f = $rq->file('txtimg')->getClientOriginalName();
     	$filename = time().'_'.$f;
     	$pro->images = $filename;    	
     	$rq->file('txtimg')->move('public/uploads/products/',$filename);
-    	$pro->save();    	
-    	$pro_id =$pro->id;
+    	  	
+        $pro->brand_id = $rq->sltBrand;
+    	$pro->promotionPrice = $rq->txtPromo;
+        $pro_seo =Input::get('sltType');
+        $pro_status =Input::get('sltStatus');
+        $truong = Input::get('txtTruong');
+        $thongSo = Input::get('txtThongSo');
+        $pro->detail = "";
+        $pro->detail_up = "";
+        for( $i=0; $i<count($truong); $i++){
+            $pro->detail .= '<tr>';
+            $pro->detail .= '<td>'.$truong[$i].'</td>';
+            $pro->detail .= '<td>'.$thongSo[$i].'</td>';
+            $pro->detail .= '</tr>';
+            $pro->detail_up .= "<tr>";
+            $pro->detail_up .= "<td><input type='text' name='txtTruong[]' class='form-control' value='".$truong[$i]."'</td>";
+            $pro->detail_up .= "<td><input type='text' name='txtThongSo[]' class='form-control' value='".$thongSo[$i]."'></td>";
+            $pro->detail_up .= "<td><input type='button' class='btn-default btn' value='x' ></td>";
+            $pro->detail_up .= "</tr>";
+
+        }
+        $pro->save();  
+        $pro_id =$pro->id;
+        /*
 
     	$detail = new Pro_details();
 
@@ -136,7 +162,7 @@ class ProductsController extends Controller
 
     	$detail->created_at = new datetime;
     	$detail->save();    	
-
+        */
     	if ($rq->hasFile('txtdetail_img')) {
     		$df = $rq->file('txtdetail_img');
     		foreach ($df as $row) {
@@ -156,8 +182,9 @@ class ProductsController extends Controller
 
     }
     
-    public function getedit($loai,$id)
+    public function getedit($id)
     {
+        $loai = 9;
         $dt = Products::where('id',$id)->first();
         $c_id= $dt->cat_id;
         $loai= Category::where('id',$c_id)->first();
@@ -177,7 +204,14 @@ class ProductsController extends Controller
             return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>$p_id]);     
         }
     }
-    public function postedit($loai,$id,EditProductsRequest $rq)
+    public function getFormEdit($id){
+        $pro = Products::where('id',$id)->first();
+        $cat= Category::where('cat','like','%category%')->get();
+        $brand = Brands::all();
+        return view('back-ends.product.edit-pro',['cat'=>$cat,'brand'=>$brand,'pro'=>$pro]);
+
+    }
+    public function postedit($id,EditProductsRequest $rq)
     {
     	$pro = Products::find($id);
 
@@ -195,7 +229,7 @@ class ProductsController extends Controller
         $pro->cat_id = $rq->sltCate;
         $pro->user_id = Auth::guard('admin')->user()->id;
         $pro->updated_at = new datetime;
-        $pro->status = '1';
+        //$pro->status = '1';
         $file_path = public_path('public/uploads/products/').$pro->images;        
         if ($rq->hasFile('txtimg')) {
             if (file_exists($file_path))
@@ -207,9 +241,28 @@ class ProductsController extends Controller
             $filename = time().'_'.$f;
             $pro->images = $filename;       
             $rq->file('txtimg')->move('public/uploads/products/',$filename);
-        }       
+        } 
+        $pro->brand_id = $rq->sltBrand;
+        $pro->promotionPrice = $rq->txtPromo;
+        $pro_seo =Input::get('sltType');
+        $pro_status =Input::get('sltStatus');
+        $truong = Input::get('txtTruong');
+        $thongSo = Input::get('txtThongSo');
+        $pro->detail = "";
+        $pro->detail_up = "";
+        for( $i=0; $i<count($truong); $i++){
+            $pro->detail .= '<tr>';
+            $pro->detail .= '<td>'.$truong[$i].'</td>';
+            $pro->detail .= '<td>'.$thongSo[$i].'</td>';
+            $pro->detail .= '</tr>';
+            $pro->detail_up .= "<tr>";
+            $pro->detail_up .= "<td><input type='text' name='txtTruong[]' class='form-control' value='".$truong[$i]."'</td>";
+            $pro->detail_up .= "<td><input type='text' name='txtThongSo[]' class='form-control' value='".$thongSo[$i]."'></td>";
+            $pro->detail_up .= "<td><input type='button' class='btn-default btn' value='x' ></td>";
+            $pro->detail_up .= "</tr>";
+        }      
         $pro->save(); 
-        
+        /*
         $pro->pro_details->cpu = $rq->txtCpu;
         $pro->pro_details->ram = $rq->txtRam;
         $pro->pro_details->screen = $rq->txtScreen;
@@ -233,7 +286,7 @@ class ProductsController extends Controller
         }
         $pro->pro_details->os = $rq->txtOs;
         $pro->pro_details->updated_at = new datetime;        
-
+        */
         if ($rq->hasFile('txtdetail_img')) {
             $detail = Detail_img::where('pro_id',$id)->get();
             $df = $rq->file('txtdetail_img');
@@ -259,7 +312,7 @@ class ProductsController extends Controller
                 }
             }
         }
-    $pro->pro_details->save();
+    //$pro->pro_details->save();
     return redirect('admin/sanpham/all')
       ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã lưu !']);       
     }
@@ -269,6 +322,7 @@ class ProductsController extends Controller
    {
      $array_id = explode(",", Input::get('id'));
       $kq = true;
+      $mgs = "OK";
       foreach ($array_id as $value)
       {
             $detail = Detail_img::where('pro_id',$value)->get();
@@ -290,7 +344,7 @@ class ProductsController extends Controller
             } 
 
       }
-      return ($mgs);
+      return ('a');
    }
    public function getdel($id)
     {
